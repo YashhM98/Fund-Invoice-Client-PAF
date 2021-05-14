@@ -73,6 +73,7 @@ public class Invoice {
 		 
 	 // Prepare the html table to be displayed
 	 output = "<table  class='table table-dark table-striped'><tr>"
+			 +"<th>id</th>"
              +"<th>amount</th>"
              + "<th>research_id</th>"
              + "<th>date</th>"
@@ -88,14 +89,15 @@ public class Invoice {
 	 // iterate through the rows in the result set
 	 while (rs.next())
 	 {
-		 String id = Integer.toString(rs.getInt("id"));
+		 String id = rs.getString("id");
 		 String amount = rs.getString("amount");
 		 String research_id = rs.getString("research_id");
 		 String date = rs.getString("date");
 		 String cus_id = rs.getString("cus_id");	 
 		 
 		 // Add into the html table
-		 output += "<tr><td>" + amount + "</td>";
+		 output += "<tr><td>" + id + "</td>";
+		 output += "<td>" + amount + "</td>";
 		 output += "<td>" + research_id + "</td>";
 		 output += "<td>" + date + "</td>";
 		 output += "<td>" + cus_id + "</td>";
@@ -139,7 +141,7 @@ public class Invoice {
 		 preparedStmt.setString(2, research_id);
 		 preparedStmt.setString(3, date);
 		 preparedStmt.setString(4, cus_id);
-		 preparedStmt.setInt(5, Integer.parseInt(id));
+		 preparedStmt.setString(5, id);
 		 
 		 // execute the statement
 		 preparedStmt.execute();
